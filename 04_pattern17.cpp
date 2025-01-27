@@ -1,3 +1,8 @@
+// A
+// B C
+// C D E
+// D E F G
+// E F G H I
 #include<iostream>
 using namespace std;
 int main(){

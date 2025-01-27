@@ -21,7 +21,7 @@ int main(){
    cout << "Sum is " << sum;
    */ 
   int i=1;
-  while(i<=n){
+  while(1){
     sum+=i;
     i++;
   }

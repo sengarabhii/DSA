@@ -1,3 +1,8 @@
+// 1234554321
+// 1234**4321
+// 123****321
+// 12******21
+// 1********1
 #include<iostream>
 using namespace std;
 int main(){
@@ -12,7 +17,7 @@ int main(){
             cout << "*";
         }
         for(int l=1;l<=n-i+1;l++){
-            cout << n-i+1;
+            cout << (n-i+1)-l+1;;
         }
         cout << endl;
     }

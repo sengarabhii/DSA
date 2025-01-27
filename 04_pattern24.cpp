@@ -1,3 +1,8 @@
+// 12345
+//  2345
+//   345
+//    45
+//     5
 #include<iostream>
 using namespace std;
 int main(){
