@@ -5,6 +5,7 @@ void printarray(int arr[], int n){
         cout << arr[i] <<"\t";
     }
 }
+
 void unique(int arr[],int n){
     for(int i=0;i<n;i++){
         int key=arr[i];
