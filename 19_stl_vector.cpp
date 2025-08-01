@@ -1,23 +1,5 @@
-/*#include<iostream>
-#include<array>
-using namespace std;
-
-int main(){
-    //an stl array depend on basic array
-    array<int,5> a={1,3,5,7,9};
-    int size=a.size();
-    for(int i=0;i<size;i++){
-        cout << a[i] <<endl;
-    }
-    cout << "Element at 4th index : " << a.at(4) <<endl;
-    cout << "Empty or not : " << a.empty() <<endl;
-    cout << "First element : " << a.front() <<endl;
-    cout << "Last element : " << a.back() <<endl;
-}*/
-
-// Vector
-
 // a vector is a dynamic array which doubles its size when old space is filled. basically it copies its data into newly made vector which is double of previous size and old one is then dump or dead
+
 #include<iostream>
 #include<vector>
 using namespace std;
@@ -34,21 +16,48 @@ int main(){
     v.push_back(4);
     v.push_back(5);
     for(int i:v){
-        cout << i <<endl;
+        cout << i << " ";
     }
+    cout <<endl;
     cout << "Vector is " <<endl;
     cout << "Front element : " <<v.front() <<endl;
     cout << "Back element : " <<v.back() <<endl;
     cout << "Element at 3rd index : " <<v.at(3) <<endl;
     cout << "Before pop : " <<endl;
     for(int i:v){
-        cout << i <<endl;
+        cout << i << " ";
     }
-    cout << "After pop : " <<endl;
+    cout <<endl << "After pop : " <<endl;
     v.pop_back();
     for(int i:v){
-        cout << i <<endl;
+        cout << i << " ";
     }
+
+    cout  <<endl <<"Before clear" <<endl;
+    cout << "Size : " << v.size() <<endl;
+    cout << "Capacity : " <<v.capacity() <<endl;
+    v.clear();
+    cout << "After clear" <<endl;
+    cout << "Size : " << v.size() <<endl;
+    cout << "Capacity : " <<v.capacity() <<endl;
+    
+    
+    // initializing vector with defined size
+    vector<int> u(5,1);
+    // bydefault value is 0 but here we changes it to 1
+    cout << "vector u : " <<endl;
+    for(int i:u){
+        cout << i << " ";
+    }
+    cout <<endl;
+    // copying vector
+    vector<int> w(u);
+    cout << "vector w : " <<endl;
+    for(int i:w){
+        cout << i << " ";
+    }
+
+    
 
 
 
