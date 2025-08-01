@@ -15,11 +15,11 @@ int main(){
     cout << "Size : " << v.size() <<endl;
     v.push_back(4);
     v.push_back(5);
+    cout << "Vector is " <<endl;
     for(int i:v){
         cout << i << " ";
     }
     cout <<endl;
-    cout << "Vector is " <<endl;
     cout << "Front element : " <<v.front() <<endl;
     cout << "Back element : " <<v.back() <<endl;
     cout << "Element at 3rd index : " <<v.at(3) <<endl;
