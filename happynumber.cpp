@@ -16,7 +16,7 @@ int main(){
     int temp = num;
     while(1){
         int square = digsquare(temp);
-        if(square>1 && square<10){
+        if(square>1 && square<2){
             cout << num << " is not happy no." ;
             break;
         }
