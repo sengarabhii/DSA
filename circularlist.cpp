@@ -22,7 +22,7 @@ void insertatEnd(int value){
         Head = NewNode;
     }
     struct Node* temp = Head;
-    while(temp->nex=Head){
+    while(temp->next=Head){
         temp = temp->next;
     }
     temp->next = NewNode;

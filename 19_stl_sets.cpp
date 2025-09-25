@@ -14,6 +14,7 @@ int main(){
     s.insert(12);
     for( auto i : s){
     cout << i <<endl;
+    cout << i+1 <<endl;
     }
     set<int>::iterator it=s.begin();
     it++;

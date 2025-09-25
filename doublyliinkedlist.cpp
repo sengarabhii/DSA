@@ -2,6 +2,7 @@
 using namespace std;
 struct node{
     int data;
+   
     node* next;
     node* prev;
 };
@@ -107,6 +108,7 @@ void deleteatbeg(){
     head = head->next;
     head->prev = NULL;
     temp->next = NULL;
+    free(temp);
     return ;
 }
 
@@ -118,8 +120,24 @@ void deleteatend(){
     }
     temp->prev->next = NULL;
     temp->prev = NULL;
-    cout <<endl <<endl;
-    return ;
+     cout << "After freeing : " << temp <<endl;
+     
+    free(temp);
+
+}
+void deleteatpos(int pos){
+    struct node* temp = head;
+    for(int i = 1 ; i < pos-1 ; i++){
+        temp = temp->next;
+    }
+    struct node* temp2 = temp->next;
+    
+    temp->next = temp->next->next;
+    temp->next->next->prev = temp;
+    cout << "deleted value : " <<temp2->data <<endl;
+    
+    cout << "After freeing : " << temp2 <<endl;
+    
 }
 
 
@@ -195,6 +213,17 @@ int main(){
                     break;
                 }
                 deleteatend();
+                cout << "Element deleted successfully " <<endl;
+                break;
+            case 9:
+                if(head == NULL){
+                    cout << "No element present in the list : " ;
+                    break;
+                }
+                cout << "Enter position of element at which you want to delete in list : ";
+                int position;
+                cin >> position ;
+                deleteatpos(position);
                 cout << "Element deleted successfully " <<endl;
                 break;
 
