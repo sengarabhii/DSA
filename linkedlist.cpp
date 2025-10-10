@@ -13,8 +13,16 @@ struct Node* createNode(int val){
 }
 void insertatBeg(int value){
     struct Node* NewNode = createNode(value);
-    NewNode->next = Head;
-    Head = NewNode;
+    if(Head==NULL){
+        //list is empty
+        NewNode->data=val;
+        Head=NewNode;
+    }
+    else{
+        NewNode->data=val;
+        NewNode->next = Head;
+        Head = NewNode;
+    }
 }
 void insertatEnd(int value){
     struct Node* NewNode = createNode(value);
@@ -64,3 +72,6 @@ int main(){
     // }
     return 0;
 }
+
+
+int val = (int)malloc(sizeof(val))
