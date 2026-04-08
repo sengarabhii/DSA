@@ -1,22 +1,57 @@
-#include<iostream>
-#include<vector>
+#include<bits/stdc++.h>
 using namespace std;
-void wavePrint(vector<vector<int>> arr, int nRows, int mCols)
-{
-    for(int j = 0 ; j < mCols ; j++){
-        if(j%2!=0){
-            for(int i = nRows-1 ; i >= 0 ; i--){
-                cout << arr[i][j] << " " ;
-            }
-        }
-        else{
-            for(int i = 0 ; i < nRows ; i++){
-                cout << arr[i][j] << " ";
-            }
-        }
+void solve(){
+    int n,k;
+    cin >> n >> k;
+    vector<int> nums(n+1);
+    for(int i = 1 ; i <= n ; i++){
+        cin >> nums[i];
     }
+    int ind;
+    cin >> ind;
+    int x = nums[ind];
+    int i = ind;
+    int j = ind;
+    int comp = nums[ind];
+    int count = 0;
+    while(i>0 && j<=n){
+        while(i>0 && nums[i]==comp){
+            i--;
+        }
+        while(j<=n && nums[j]==comp){
+            j++;
+        }
+        if((i>0 && j<=n) && (nums[i]!=comp || nums[j]!=comp)){
+            count++;
+            comp = !comp;
+        }
+        i--;
+        j++;
+    }
+    while(i>0){
+        if(nums[i]!=comp){
+            comp = !comp;
+            count++;
+        }
+        i--;
+    }
+    while(j<=n){
+        if(nums[j]!=comp){
+            comp = !comp;
+            count++;
+        }
+        j++;
+    }
+    if(comp!=x){
+        count++;
+    }
+    cout << count <<endl;
 }
 int main(){
-    int arr[3][4] = {{1,2,3,4},{5,6,7,8},{9,10,11,12}};
-    wavePrint(arr,3,4);
+    int t;
+    cin >> t;
+    while(t){
+        solve();
+        t--;
+    }
 }

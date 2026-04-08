@@ -4,7 +4,7 @@ int partition(int *arr,int s ,int e){
     int pivot = arr[s];
     int count = 0;
     //counting no of elements less than pivot
-    for(int i = s+1  ; i <= e ; i++){
+    for(int i = s+1  ; i < e ; i++){
         if(arr[i]<pivot) count++;
     }
     int pivotindex = s + count;
