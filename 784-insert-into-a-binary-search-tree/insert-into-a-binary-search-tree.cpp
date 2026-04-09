@@ -10,32 +10,18 @@
  * };
  */
 class Solution {
-void solve(TreeNode* &root,int val,TreeNode* newnode){
-        if(root==NULL){
-            root = newnode;
-            return;
-        }
-        if(val<root->val){
-            if(root->left==NULL){
-                root->left = newnode;
-            }
-            else{
-                solve(root->left,val,newnode);
-            }
-        }
-        else{
-            if(root->right==NULL){
-                root->right = newnode;
-            }
-            else{
-                solve(root->right,val,newnode);
-            }
-        }
-}
 public:
     TreeNode* insertIntoBST(TreeNode* root, int val) {
-        TreeNode* newnode = new TreeNode(val);
-        solve(root,val,newnode);
+        if(root==NULL){
+            root = new TreeNode(val);
+            return root;
+        }
+        if(val<root->val){
+            root->left = insertIntoBST(root->left,val);
+        }
+        else{
+            root->right = insertIntoBST(root->right,val);
+        }
         return root;
     }
 };
