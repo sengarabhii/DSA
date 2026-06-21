@@ -1,50 +1,41 @@
-#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
-int noofdiv(int n) {
-    int cnt = 0;
-    for (int i = 1; i * i <= n; i++) {
-        if (n % i == 0) {
-            cnt++;
-            if (i != n / i) cnt++;
-        }
+void solve(){
+    int n;
+    cin >> n;
+    vector<int> arr(n);
+    for(int i = 0 ; i < n ; i++){
+        cin >> arr[i];
     }
-    return cnt;
+    vector<int> ans;
+    vector<int> odd;
+    vector<int> even;
+    vector<int> three;
+    for(int i = 0 ; i < n ; i++){
+        if(arr[i]%6==0) ans.push_back(arr[i]);
+        else if(arr[i]%2==0) even.push_back(arr[i]);
+        else if(arr[i]%3==0) three.push_back(arr[i]);
+        else odd.push_back(arr[i]);
+    }
+    for(int i = 0 ; i < ans.size() ; i++){
+        cout << ans[i] << " ";
+    }
+    for(int i = 0 ; i < even.size() ; i++){
+        cout << even[i] << " ";
+    }
+    for(int i = 0 ; i < odd.size() ; i++){
+        cout << odd[i] << " ";
+    }
+    for(int i = 0 ; i < three.size() ; i++){
+        cout << three[i] << " ";
+    }
+    cout <<endl;
 }
-void solve() {
-    int x, y;
-    int m = 676767677;
-    cin >> x >> y;
-
-    int n = x + y;
-
-    // Case: all same elements
-    if (x == 0 || y == 0) {
-        cout << noofdiv(n) % m << endl;
-        for (int i = 0; i < x; i++){
-            cout << 1 << " ";
-        }
-        for (int i = 0; i < y; i++){
-            cout << -1 << " ";
-        }
-        cout << endl;
-        return;
-    }
-
-    // Otherwise answer = 1
-    cout << 1 << endl;
-
-    // Construct: all 1s then all -1s
-    for(int i = 0; i < x; i++){
-        cout << 1 << " ";
-    }
-    for(int i = 0; i < y; i++){
-        cout << -1 << " ";
-    }
-    cout << endl;
-}
-
 int main() {
     int t;
     cin >> t;
-    while (t--) solve();
+    while(t){
+        solve();
+        t--;
+    }
 }

@@ -1,57 +1,32 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
-void solve(){
-    int n,k;
-    cin >> n >> k;
-    vector<int> nums(n+1);
-    for(int i = 1 ; i <= n ; i++){
-        cin >> nums[i];
-    }
-    int ind;
-    cin >> ind;
-    int x = nums[ind];
-    int i = ind;
-    int j = ind;
-    int comp = nums[ind];
-    int count = 0;
-    while(i>0 && j<=n){
-        while(i>0 && nums[i]==comp){
-            i--;
+void countPalindromicSubsequence(string s) {
+        set<string> ans;
+        vector<int> suffix(26,0);
+        for(int i = 0 ; i < s.length() ; i++){
+            int ch = s[i] - 'a';
+            suffix[ch]++;
         }
-        while(j<=n && nums[j]==comp){
-            j++;
+        vector<int> prefix(26,0);
+        for(int i = 0 ; i < s.length() ; i++){
+            int ch = s[i] - 'a';
+            suffix[ch]--;
+            string temp;
+            for(int j = 0 ; j < 26 ; j++){
+                if(prefix[j]>0 && suffix[j]>0){
+                    temp.push_back(prefix[j]+'a');
+                    temp.push_back(s[i]);
+                    temp.push_back(prefix[j]+'a');
+                    ans.insert(temp);
+                }
+            }
+            prefix[ch]++;
         }
-        if((i>0 && j<=n) && (nums[i]!=comp || nums[j]!=comp)){
-            count++;
-            comp = !comp;
+        for(auto i : ans){
+            cout << i << " ";
         }
-        i--;
-        j++;
     }
-    while(i>0){
-        if(nums[i]!=comp){
-            comp = !comp;
-            count++;
-        }
-        i--;
-    }
-    while(j<=n){
-        if(nums[j]!=comp){
-            comp = !comp;
-            count++;
-        }
-        j++;
-    }
-    if(comp!=x){
-        count++;
-    }
-    cout << count <<endl;
-}
-int main(){
-    int t;
-    cin >> t;
-    while(t){
-        solve();
-        t--;
-    }
+int main() {
+    string s = "tlpjzdmtwderpkpmgoyrcxttiheassztncqvnfjeyxxp";
+	countPalindromicSubsequence(s);
 }

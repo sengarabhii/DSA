@@ -6,6 +6,7 @@ int main(){
     priority_queue<int> maxi;
     maxi.push(3);
     maxi.push(2);
+    maxi.push(9);
     maxi.push(5);
     maxi.push(9);
     maxi.push(1);
