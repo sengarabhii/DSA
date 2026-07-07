@@ -1,26 +1,24 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
-vector<int> topologicalSort(vector<vector<int>> &edges, int v, int e)  {
+int detectCycleInDirectedGraph(int n, vector < pair < int, int >> & edges) {
+    //using bfs(kahn's algo)
     unordered_map<int,vector<int>> adjlist;
-    vector<int> indegree(v,0);
-    int start = 0;
-    for(int i = 0 ; i < edges.size() ; i++){
-        int u = edges[i][0];
-        int v = edges[i][1];
-        adjlist[u].push_back(v);
-        indegree[v]++;
+    vector<int> indegree(n+1,0);
+    for(auto i : edges){
+        adjlist[i.first].push_back(i.second);
+        indegree[i.second]++;
     }
-    vector<int> ans;
+    int cnt = 0;
     queue<int> q;
-    for(int i = 0 ; i < v ; i++){
+    for(int i = 1 ; i < indegree.size() ; i++){
         if(indegree[i]==0){
             q.push(i);
         }
     }
     while(!q.empty()){
         int node = q.front();
+        cnt++;
         q.pop();
-        ans.push_back(node);
         for(auto neighbour : adjlist[node]){
             indegree[neighbour]--;
             if(indegree[neighbour]==0){
@@ -28,5 +26,7 @@ vector<int> topologicalSort(vector<vector<int>> &edges, int v, int e)  {
             }
         }
     }
-    return ans;
+    if(cnt==n) return 0;
+    else return 1;
+
 }
