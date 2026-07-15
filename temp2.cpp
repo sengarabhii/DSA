@@ -1,36 +1,39 @@
 #include <bits/stdc++.h>
 using namespace std;
 void solve(){
-    int n;
-    cin >> n;
-    vector<int> arr(n);
+    int n,x,y;
+    cin >> n >> x >> y;
+    vector<int> nums(n);
     for(int i = 0 ; i < n ; i++){
-        cin >> arr[i];
+        cin >> nums[i];
     }
-    vector<int> ans;
-    vector<int> odd;
-    vector<int> even;
-    vector<int> three;
+    int prev = 0;
+    bool flag = false;
+    bool issorted = true;
     for(int i = 0 ; i < n ; i++){
-        if(arr[i]%6==0) ans.push_back(arr[i]);
-        else if(arr[i]%2==0) even.push_back(arr[i]);
-        else if(arr[i]%3==0) three.push_back(arr[i]);
-        else odd.push_back(arr[i]);
+        if(nums[i]<prev){
+            issorted = false;
+        }
+        if(i&1 && nums[i]&1) flag = true;
+        if(!(i&1) && !(nums[i]&1)) flag = true;
+        prev = nums[i];
     }
-    for(int i = 0 ; i < ans.size() ; i++){
-        cout << ans[i] << " ";
+    if(issorted){
+        cout << "YES" <<endl;
+        return;
     }
-    for(int i = 0 ; i < even.size() ; i++){
-        cout << even[i] << " ";
+    if(x==y){
+        cout << "NO" <<endl;
     }
-    for(int i = 0 ; i < odd.size() ; i++){
-        cout << odd[i] << " ";
+    if(flag){
+        if(!(x&1) && (!(y&1))){
+            cout << "NO" <<endl;
+            return;
+        }
     }
-    for(int i = 0 ; i < three.size() ; i++){
-        cout << three[i] << " ";
-    }
-    cout <<endl;
+    cout << "YES" <<endl;
 }
+    
 int main() {
     int t;
     cin >> t;
