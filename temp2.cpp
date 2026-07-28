@@ -1,39 +1,54 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
-int linearsrch(vector<int> &arr,int target){
-    for(int i = 0 ; i < arr.size() ; i++){
-        if(arr[i]==target){
-            return i;
+int binarySrch(vector<long long> &prefixsum,long long &weightage,int target){
+    int s = 0;
+    int e = prefixsum.size()-1;
+    long long midval;
+    while(s<=e){
+        long long mid = s + (e-s)/2;
+        midval = prefixsum[mid] + (mid+1)*weightage;
+        if(midval<=target){
+            s = mid+1;
+        }
+        else{
+            e = mid-1;
         }
     }
-    return -1;
+
+    return e+1;
 }
-int binarysrch(vector<int> &arr,int target,int s,int e){
-    if(s>e){
-        return -1;
+void solve(){
+    int n,x;
+    cin >> n >> x;
+    vector<long long> arr(n);
+    for(int i = 0 ; i < n ; i++){
+        cin >> arr[i];
     }
-    int mid = s + (e-s)/2;
-    if(arr[mid]==target){
-        return mid;
+    sort(arr.begin(),arr.end());
+    vector<long long> prefixsum = arr;
+    for(int i = 1 ; i < n ; i++){
+        prefixsum[i] += prefixsum[i-1];
     }
-    else if(arr[mid]<target){
-        return binarysrch(arr,target,mid+1,e);
+    long long weightage = 0;
+    long long ans = 0;
+    
+    while(1){
+        int curr = binarySrch(prefixsum,weightage,x);
+        if(curr==0){
+            cout << ans <<endl;
+            return;
+        }
+        ans += curr;
+        weightage++;
     }
-    else{
-        return binarysrch(arr,target,s,mid-1);
-    }
+    cout << ans <<endl;
+
 }
 int main(){
-    vector<int> arr = {2,4,5,8,10};
-    int target = 80;
-    int ind1 = linearsrch(arr,target);
-    int ind2 = binarysrch(arr,target,0,arr.size()-1);
-    if(ind1==-1){
-        cout << "Not found..." <<endl;
+    int t;
+    cin >> t;
+    while(t){
+        solve();
+        t--;
     }
-    else cout << "Element found at index : " << ind1 <<endl;
-    if(ind2==-1){
-        cout << "Not found...";
-    }
-    else cout << "Element found at index : " << ind2 <<endl;
 }
