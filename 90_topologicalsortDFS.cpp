@@ -32,3 +32,12 @@ vector<int> topologicalSort(vector<vector<int>> &edges, int v, int e)  {
 
     return ans;
 }
+int main(){
+    vector<vector<int>> edges = {
+        {0,1},{0,2},{1,3},{3,4},{4,1}
+    };
+    vector<int> ts = topologicalSort(edges,5,5);
+    for(auto i : ts){
+        cout << i << " ";
+    }
+}

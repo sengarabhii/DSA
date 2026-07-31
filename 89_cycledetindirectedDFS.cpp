@@ -6,7 +6,6 @@ bool dfs(unordered_map<int,list<int>> &adjlist,int i,unordered_map<int,bool> &vi
   for(auto neighbour : adjlist[i]){
     if(!visited[neighbour]){
       bool iscycle = dfs(adjlist,neighbour,visited,dfsVisited);
-      dfsVisited[neighbour] = 0;
       if(iscycle) return true;
     }
     else if(dfsVisited[neighbour]){
