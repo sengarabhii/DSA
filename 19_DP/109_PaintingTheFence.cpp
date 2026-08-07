@@ -2,6 +2,7 @@
 using namespace std;
 class Solution {
   public:
+  //memoization
     int solve(vector<int> &dp,int n,int k){
         if(n==1){
             return k;
@@ -17,8 +18,34 @@ class Solution {
         dp[n] = op1 + op2;
         return dp[n];
     }
-    int countWays(int n, int k) {
+    //tabulation
+    int solve2(int n,int k){
         vector<int> dp(n+1,-1);
-        return solve(dp,n,k);
+        dp[0] = 0;
+        dp[1] = k;
+        dp[2] = k*k;
+        for(int i = 3 ; i <= n ; i++){
+            dp[n] = (k-1)*(dp[n-1] + dp[n-2]);
+        }
+        return dp[n];
+    }
+    //space optimization
+    int solve3(int n,int k){
+        if(n==1) return k;
+        int prev2 = k;
+        int prev1 = k*k;
+        for(int i = 3 ; i <= n ; i++){
+            int curr = (k-1)*(prev1 + prev2);
+            prev2 = prev1;
+            prev1 = curr;
+        }
+        return prev1;
+    }
+    //space optimization
+    int countWays(int n, int k) {
+        // vector<int> dp(n+1,-1);
+        // return solve(dp,n,k);
+        // return solve2(n,k);
+        return solve3(n,k);
     }
 };
