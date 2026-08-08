@@ -86,6 +86,8 @@ class Solution {
     }
    
     //space optimization
+    //TC->O(n*capacity)
+    //SC->O(2*capacity)
     int solveOpti(int capacity,vector<int> &val,vector<int> &wt,int i){
         int n = val.size();
         vector<int> prevrow(capacity+1,0);
@@ -118,6 +120,39 @@ class Solution {
         return prevrow[capacity];
     }
     
+    //space optimization
+    //TC->O(n*capacity)
+    //SC->O(capacity)
+    int solveOpti2(int capacity,vector<int> &val,vector<int> &wt,int i){
+        int n = val.size();
+        vector<int> prevrow(capacity+1,0);
+        //for 0th item i.e. 0th row filling
+        //if w<weight[0] => 0
+        for(int w = wt[0] ; w <= capacity ; w++){
+            if(w >= wt[0]){
+                prevrow[w] = val[0];
+            }
+            else{
+                prevrow[w] = 0;//already during intitialization
+            }
+        }
+        
+        for(int i = 1 ; i < n ; i++){
+            for(int w = capacity ; w >= 0 ; w--){
+                //inclusion
+                int include = 0;
+                if(w>=wt[i]){
+                    include = val[i] + prevrow[w-wt[i]];
+                }
+                //exclusion
+                int exclude = prevrow[w];
+                prevrow[w] = max(include,exclude);
+            }
+        }
+        
+        return prevrow[capacity];
+    }
+    
     int knapsack(int W, vector<int> &val, vector<int> &wt) {
         
         // int n = val.size();
@@ -128,6 +163,9 @@ class Solution {
         // return solveTab(W,val,wt,0);
         
         
-        return solveOpti(W,val,wt,0);
+        // return solveOpti(W,val,wt,0);
+        
+        
+        return solveOpti2(W,val,wt,0);
     }
 };
